@@ -9,8 +9,8 @@ var app = express();
 
 // Public Settings
 app.use(express.static(__dirname + '/public'));
-var port = process.env.PORT || 3000;
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mynews";
+var port = process.env.PORT || 8080;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/ews";
 // Database
 mongoose.connect(MONGODB_URI, function(err) {
 	if(err) throw err;
@@ -34,11 +34,6 @@ app.set('view engine', 'handlebars');
 //Routes
 var routes = require('./routes/routes.js');
 app.use('/',routes);
-
-//404 Error
-app.use(function(req, res) {
-	res.render('404');
-});
 
 //Port
 app.listen(port, function() {

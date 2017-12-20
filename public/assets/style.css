@@ -6,7 +6,12 @@
 	min-height: 100vh;
 	flex-direction: column;
  }
-
+.nav{
+  background: #DDDDDD;
+}
+.nav-tabs>li>a{
+  color: black;
+}
 
 #burger{
  animation: rotateOut 5s linear infinite;
@@ -25,57 +30,15 @@
  	transform: rotate3d(0, 0, 1, 360deg);
  }
 }
- h1 {
- 	text-align: center;
- 	font-size: 65px;
- 	margin: 50px;
- }
-
- .Available {
- 	font-weight: normal;
- 	font-size: 20px;
- 	text-align: center;
- 	border-radius: 25px;
- 	width: 100%;
- 	margin: 10px;
- 	padding: 10px;
- 	background-color: blue;
- 	border: none;
- }
-
  button:hover {
  	opacity: 0.5;
  }
-
- .devoured {
- 	font-weight: normal;
- 	font-size: 20px;
- 	text-align: center;
- 	border-radius: 25px;
- 	margin: 10px;
- 	padding: 10px;
- 	background-color: red;
- }
-
- h2 {
-  	text-align: center;
- 	font-size: 40px;
- 	margin: 50px;
- }
- .add{
- 	font-weight: normal;
- 	font-size: 20px;
- 	text-align: center;
- 	border-radius: 25px;
- 	width: 100%;
- 	margin: 0;
- 	padding: 10px;
- 	background-color: blue;
- 	border: none;
- }
-
 .Footer {
 	background-color: black;
 	padding: 20px 0;
 	border-radius: 25px;
+}
+.lines{
+border-bottom: 3px solid #FF4136;
+background-color: #DDDDDD;
 }
