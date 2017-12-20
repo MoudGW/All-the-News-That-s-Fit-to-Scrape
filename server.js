@@ -1,42 +1,46 @@
+// Required NPM Packages
 var express = require('express');
+var path = require('path');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var MongoClient = require('mongodb').MongoClient
-var port = process.env.PORT || 3000;
+var app = express();
+var mongoose = require('mongoose');
 
 var app = express();
 
-// Serve static content for the app from the 'public' directory
-app.use(express.static(process.cwd() + '/public'));
+// Public Settings
+app.use(express.static(__dirname + '/public'));
+var port = process.env.PORT || 3000;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mynews";
+// Database
+mongoose.connect(MONGODB_URI, function(err) {
+	if(err) throw err;
+	console.log('database connected');
+});
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
-// Override with POST having ?_method=DELETE
-app.use(methodOverride('_method'));
+// BodyParser Settings
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 
-// define the view engine is handlebars
-var exphbs = require('express-handlebars');
-
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+// Set up Handlebar for views
+var expressHandlebars = require('express-handlebars');
+app.engine('handlebars', expressHandlebars({
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
-// Import routes 
-var routes = require('./controllers/burgers_controller.js');
+//Routes
+var routes = require('./routes/routes.js');
+app.use('/',routes);
 
-app.use('/', routes);
+//404 Error
+app.use(function(req, res) {
+	res.render('404');
+});
 
-app.listen(port);
-
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var url = process.env.MONGODB_URI || "mongodb://localhost/mynews";
-
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-
-  db.close();
+//Port
+app.listen(port, function() {
+    console.log("Listening on port:" + port);
 });
