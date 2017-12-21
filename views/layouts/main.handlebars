@@ -4,7 +4,7 @@
 	<link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 	<link rel="stylesheet" href="/assets/style.css" type="text/css" />
 	<title>Bitcoin news</title>
 </head>
@@ -21,7 +21,7 @@
 	<img src="/assets/bitcoin.png" width="100px" id="burger">
 	</div>
 	{{{ body }}}
-	<footer class="Footer">
+	<footer class="footer navbar-fixed-bottom">
 		<div class="footer-copyright">
 			<div class="container">
 				<span class="grey-text text-lighten-4">© 2017 MoudGW</span>
@@ -31,11 +31,27 @@
 	</footer>
 </body>
 <script type="text/javascript">
-	/*$( "button" ).click(function() {
-		var x=$(this).attr('data-id');
-		$.post( "save", function( data ) {
-       $( ".result" ).html( data );
+	$(document).ready(function() {
+     $('.comment').click(function() {
+      var x=$(this).attr('data-id');
+      $.get( "comments/"+x, function( data ) {
+         $("#"+x).append('<h4>comments</h4>');
+         for(i in data)
+         {
+         $("#"+x).append("<div class='message col-12'><p>"+data[i].comment+"</p><form action='/deletecomment/"+data[i]._id+"' method='get'><button data-id="+data[i]._id+"><i class='fa fa-trash' aria-hidden='true'></i></button></form></div>");
+         }
+         $("#"+x).append('<input name='+x+'>');
+         $("#"+x).append('<button class='+x+'>Send</button>');
+         $('.'+x).click(function() {
+       	 var comment=$('input[name='+x+']').val();
+       	 $.post( "/addcomment/"+x,{comment:comment}, function( result ) {
+       	 	location.href="http://localhost:8080/articlesaved"
+       	 });
+
+       });
      });
-   });*/
+  });
+
+});
 </script>
 </html>

@@ -19,6 +19,12 @@
  	background: white;
  	color: #FF4136;
  }
+ .message{
+ 	    margin: 2px;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 22px;
+ }
  .comment {
   color: #0074D9;
   background: white;
@@ -67,7 +73,10 @@ ul>li{
  button:hover {
  	opacity: 0.5;
  }
-.Footer {
+main{
+  min-height: 500px;
+}
+footer {
 	background-color: black;
 	padding: 20px 0;
 	border-radius: 25px;

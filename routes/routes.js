@@ -69,7 +69,7 @@ router.get('/articlesaved', function(req, res){
 
 // Get all comments for one article
 router.get('/comments/:id', function(req, res){
-  Articles.find({'articleId': req.params.id}).exec(function(err, data) {
+  Comments.find({'articleId': req.params.id}).exec(function(err, data) {
     if(err) {
       console.log(err);
     } else {
@@ -78,7 +78,6 @@ router.get('/comments/:id', function(req, res){
   });
 });
 router.get('/delete/:id', function(req, res){
-  console
   Articles.remove({'_id': req.params.id}).exec(function(err, data) {
     if(err) {
       console.log(err);
@@ -89,10 +88,9 @@ router.get('/delete/:id', function(req, res){
 });
 // Add comment for article
 router.post('/addcomment/:id', function(req, res){
-  console.log(req.params.id+' '+req.body.comment);
+  console.log(req.body);
   Comments.create({
     articleId: req.params.id,
-    name: req.body.name,
     comment: req.body.comment
   }, function(err, docs){    
     if(err){
@@ -100,6 +98,7 @@ router.post('/addcomment/:id', function(req, res){
     } else {
       console.log("New Comment Added");
     }
+    res.redirect('/articlesaved');
   });
 });
 
@@ -112,6 +111,7 @@ router.get('/deletecomment/:id', function(req, res){
     } else {
       console.log("Comment deleted");
     }
+    res.redirect('/articlesaved');
   })
 });
 
