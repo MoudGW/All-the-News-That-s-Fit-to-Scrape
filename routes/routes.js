@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Promise = require("bluebird");
-
+var result = [];
 // Assign Mongoose promise
 mongoose.Promise = Promise;
 // Mongodb models
@@ -18,8 +18,7 @@ router.get('/', function(req, res){
 });
 router.get('/articles', function(req, res){
     request(url, function(error, response, html) {  
-        var $ = cheerio.load(html);
-    var result = [];
+        var $ = cheerio.load(html);   
     // Scrape website
 $(".article").each(function(i, element) {
         var title = $(element).find('.picture').find("a").attr("title");
@@ -31,6 +30,7 @@ $(".article").each(function(i, element) {
           return;
         }else{
         result[i] = ({ 
+        id:i,
         title: title,
         imgLink: imgLink,
         storyLink: storyLink,
@@ -41,14 +41,10 @@ $(".article").each(function(i, element) {
 res.render('index',{articles:result});  
 }); 
 });
-router.post('/save', function(req, res){
-    article = { 
-        title: req.body.title,
-        storyLink: req.body.storyLink,
-        summary: req.body.summary
-      };
+router.post('/save/:id', function(req, res){
+    article = result[req.params.id];
       console.log(article);
-    Articles.findOne({'title': req.body.title}, function(err, articleRecord) {
+    Articles.findOne({'title': article.title}, function(err, articleRecord) {
         if(err) {
           console.log(err);
         } else {
@@ -62,13 +58,12 @@ router.post('/save', function(req, res){
           }         
         }
       });
-});
-
-// Get all current articles in database
+ res.render('index',{articles:result});
+ });
 router.get('/articlesaved', function(req, res){
   Articles.find().sort({ createdAt: -1 }).exec(function(err, data) { 
     if(err) throw err;
-    res.render('index',{articles:data});
+    res.render('index2',{articles:data});
   });
 });
 
@@ -82,7 +77,16 @@ router.get('/comments/:id', function(req, res){
     } 
   });
 });
-
+router.get('/delete/:id', function(req, res){
+  console
+  Articles.remove({'_id': req.params.id}).exec(function(err, data) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/articlesaved');
+    } 
+  });
+});
 // Add comment for article
 router.post('/addcomment/:id', function(req, res){
   console.log(req.params.id+' '+req.body.comment);

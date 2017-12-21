@@ -6,8 +6,42 @@
 	min-height: 100vh;
 	flex-direction: column;
  }
+ button{
+    background: #FF4136;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding-bottom: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+ }
+ #saved{
+ 	background: white;
+ 	color: #FF4136;
+ }
+ .comment {
+  color: #0074D9;
+  background: white;
+ }
+ .delete {
+  color: #FF4136;
+  background: white;
+ }
+ h1{
+ 	text-align: center;
+ 	margin:20px;
+ }
+.save{
+ 	color: #0074D9 !important;
+ 	background: white;
+}
 .nav{
   background: #DDDDDD;
+}
+ul>li{
+	    margin-top: 4px;
+    margin-right: 20px;
+    margin-left: 10px;
 }
 .nav-tabs>li>a{
   color: black;

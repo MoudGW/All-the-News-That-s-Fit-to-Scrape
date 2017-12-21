@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div id="nav">
-        <ul class="nav nav-tabs navbar-fixed-top">
-          <li>Bitcoin scraper</li>
-          <li><form action="/articles" method="get"><button id='news'>Click</button></form></li>
+       <ul class="nav nav-tabs navbar-fixed-top">
+          <li><h4>Bitcoin scraper</h4></li>
+          <li><form action="/articles" method="get"><button id='news'>Scrape new Articles </button></form></li>
+          <li><form action="/articlesaved" method="get"><button id='saved'>Saved Articles</button></form></li>
       </ul>
     </div>
     <h1>Bitcoin News</h1>
@@ -30,9 +31,10 @@
 	</footer>
 </body>
 <script type="text/javascript">
-/*
-	$( "#news" ).click(function() {
-     $.get( "/articles", function( data ) {
+	/*$( "button" ).click(function() {
+		var x=$(this).attr('data-id');
+		$.post( "save", function( data ) {
+       $( ".result" ).html( data );
      });
    });*/
 </script>

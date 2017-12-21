@@ -10,10 +10,15 @@
        <a href="">{{this.storyLink}}</a>
      </div>
      <div class="col-1 center">
-      <form action="/save/{{this.id}}" method="POST">
-      <button class="save" data-id={{this.id}}>
-       <i class="fa fa-floppy-o fa-3x" aria-hidden="true"></i>
+      <form action="/delete/{{this._id}}" method="get">
+      <button class='comment' data-id={{this._id}}>
+       <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
      </button>
+      <form action="/comments/{{this._id}}" method="get">
+      <button class='delete' data-id={{this._id}}>
+       <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+     </button>
+     </form>
      </form>
    </div>
 </div>
