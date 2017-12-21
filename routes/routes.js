@@ -58,7 +58,6 @@ router.post('/save/:id', function(req, res){
           }         
         }
       });
- res.render('index',{articles:result});
  });
 router.get('/articlesaved', function(req, res){
   Articles.find().sort({ createdAt: -1 }).exec(function(err, data) { 
