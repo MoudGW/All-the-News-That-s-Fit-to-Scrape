@@ -56,20 +56,6 @@ ul>li{
 #burger{
  animation: rotateOut 5s linear infinite;
 }
-@keyframes rotateOut {
- 0%{
-    opacity: 1;
-  }
-
-  50%{
-    transform: rotate3d(0, 0, 1, 180deg);
-    opacity: 0.1;
-  }
- 100%{
- 	opacity: 1;
- 	transform: rotate3d(0, 0, 1, 360deg);
- }
-}
  button:hover {
  	opacity: 0.5;
  }
