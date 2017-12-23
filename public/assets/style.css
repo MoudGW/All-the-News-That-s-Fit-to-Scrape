@@ -6,15 +6,6 @@
 	min-height: 100vh;
 	flex-direction: column;
  }
- button{
-    background: #FF4136;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    padding-bottom: 12px;
-    padding-left: 25px;
-    padding-right: 25px;
- }
  #saved{
  	background: white;
  	color: #FF4136;

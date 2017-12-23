@@ -12,8 +12,8 @@
 	<div id="nav">
        <ul class="nav nav-tabs navbar-fixed-top">
           <li><h4>Bitcoin scraper</h4></li>
-          <li><form action="/articles" method="get"><button id='news'>Scrape new Articles </button></form></li>
-          <li><form action="/articlesaved" method="get"><button id='saved'>Saved Articles</button></form></li>
+          <li><form action="/articles" method="get"><button class='btn' id='news'>Scrape new Articles </button></form></li>
+          <li><form action="/articlesaved" method="get"><button class='btn' id='saved'>Saved Articles</button></form></li>
       </ul>
     </div>
     <h1>Bitcoin News</h1>
@@ -41,20 +41,18 @@
          $("#"+x).append("<div class='message col-12'><p>"+data[i].comment+"</p><form action='/deletecomment/"+data[i]._id+"' method='get'><button data-id="+data[i]._id+"><i class='fa fa-trash' aria-hidden='true'></i></button></form></div>");
          }
          $("#"+x).append('<input name='+x+'>');
-         $("#"+x).append('<button class='+x+'>Send</button>');
+         $("#"+x).append('<button class=btn btn-success '+x+'>Send</button>');
          $('.'+x).click(function() {
        	 var comment=$('input[name='+x+']').val();
        	 $.post( "/addcomment/"+x,{comment:comment}, function( result ) {
-       	 	location.href="http://localhost:8080/articlesaved"
        	 });
-
        });
      });
   });
-   $('.save').click(function() {
+  $('.save').click(function() {
       $(this).css('color','#AAAAAA');
       console.log($(this));
-   });
+  });
 });
 </script>
 </html>

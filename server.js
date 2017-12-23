@@ -10,7 +10,7 @@ var app = express();
 // Public Settings
 app.use(express.static(__dirname + '/public'));
 var port = process.env.PORT || 8080;
-var MONGODB_URI = "mongodb://heroku_ndw69814:3r17d4io8ctr0bm4vsp89cos3c@ds161426.mlab.com:61426/heroku_ndw69814" || "mongodb://localhost/new";
+var MONGODB_URI = "mongodb://heroku_ndw69814:3r17d4io8ctr0bm4vsp89cos3c@ds161426.mlab.com:61426/heroku_ndw69814";
 // Database
 mongoose.connect(MONGODB_URI, function(err) {
 	if(err) throw err;
