@@ -34,7 +34,9 @@
 	$(document).ready(function() {
      $('.comment').click(function() {
       var x=$(this).attr('data-id');
+
       $.get( "comments/"+x, function( data ) {
+         $("#"+x).html('');
          $("#"+x).append('<h4>comments</h4>');
          for(i in data)
          {
